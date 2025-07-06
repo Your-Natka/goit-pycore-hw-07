@@ -1,5 +1,5 @@
-from storage import add_contact, change_contact, show_phone, show_all
-
+from storage import ( add_contact, change_contact, show_phone, show_all, add_birthday, show_birthday,
+    birthdays, delete_contact )
 
 def execute_command(command, args):
     """
@@ -20,6 +20,21 @@ def execute_command(command, args):
             if len(args) != 1:
                 return "Invalid command. Use: phone [username]"
             return show_phone(args[0])
+        
+        elif command == "add-birthday":
+            if len(args) != 2:
+                return "Invalid command. Use: add-birthday [username] [DD.MM.YYYY]"
+            return add_birthday(args[0], args[1])
+        elif command == "show-birthday":
+            if len(args) != 1:
+                return "Invalid command. Use: show-birthday [username]"
+            return show_birthday(args[0])
+        elif command == "birthdays":
+            return birthdays()
+        elif command == "delete":
+            if len(args) != 1:
+                return "Invalid command. Use: delete [username]"
+            return delete_contact(args[0])
         elif command == "all":
             return show_all()
         else:
